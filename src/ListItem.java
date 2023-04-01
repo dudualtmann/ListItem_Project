@@ -154,7 +154,7 @@ public class ListItem<T> {
         return filteredList;
     }
 
-    public ListItem<T> map(UnaryOperator<T> opt) throws IndexListItemOutOfBoundsException{
+    public ListItem<T> map(UnaryOperator<T> opt) throws IndexListItemOutOfBoundsException {
         ListItem<T> mappedList = new ListItem<>();
         ListItem<T> pm = mappedList;
         for(ListItem<T> p = this; p != null; p = p.next) {
@@ -164,6 +164,29 @@ public class ListItem<T> {
 
         mappedList.remove(mappedList.length()-1);
         return mappedList;
+    }
+
+    public ListItem<T> sublist(int fromIndex, int toIndex) throws IndexListItemOutOfBoundsException{
+        throwIndexOutOfBounds(fromIndex);
+        throwIndexOutOfBounds(toIndex);
+
+        ListItem<T> sublist = new ListItem<>();
+        ListItem<T> p_this = this;
+        ListItem<T> p_sublist = sublist;
+
+        for(int i = 0; i < this.length(); i++) {
+            if ( i >= fromIndex && i < toIndex) {
+                p_sublist.key = p_this.key;
+                p_sublist.next = new ListItem<>();
+                p_sublist = p_sublist.next;
+            }
+            if (i == toIndex) {
+                p_sublist.key = p_this.key;
+            }
+            p_this = p_this.next;
+        }
+
+        return sublist;
     }
 
 }

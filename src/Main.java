@@ -80,8 +80,12 @@ public class Main {
         //ListItem<String> filteredStringList = head2.filter(prtStr);
         //filteredStringList.iterate();
 
-        ListItem<Integer> mappedList = head.map((item) -> item * 2);
-        mappedList.iterate();
+        //ListItem<Integer> mappedList = head.map((item) -> item * 2);
+        //mappedList.iterate();
+
+       ListItem<Integer> sublist = new ListItem<>(arr);
+       sublist = sublist.sublist(2,6);
+       sublist.iterate();
 
 
     }
